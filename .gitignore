@@ -1,0 +1,4 @@
+.idea
+target/
+/docker/production/volumes/application.log.pos
+/docker/production/volumes/application.log
