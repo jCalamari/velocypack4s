@@ -4,9 +4,9 @@ import java.util.Date
 
 private[velocypack4s] sealed trait VPackValue
 
-private[velocypack4s] final case class VPackObject(fields: List[(String, VPackValue)]) extends VPackValue
+private[velocypack4s] final case class VPackObject(fields: Vector[(String, VPackValue)]) extends VPackValue
 
-private[velocypack4s] final case class VPackArray(items: List[VPackValue]) extends VPackValue
+private[velocypack4s] final case class VPackArray(items: Vector[VPackValue]) extends VPackValue
 
 private[velocypack4s] final case class VPackString(value: String) extends VPackValue
 
@@ -36,12 +36,12 @@ private[velocypack4s] case object VPackNull extends VPackValue
 
 private[velocypack4s] object VPackArray {
 
-  def apply(fields: VPackValue*): VPackArray = VPackArray(fields.toList)
+  def apply(fields: VPackValue*): VPackArray = VPackArray(fields.toVector)
 
 }
 
 private[velocypack4s] object VPackObject {
 
-  def apply(fields: (String, VPackValue)*): VPackObject = VPackObject(fields.toList)
+  def apply(fields: (String, VPackValue)*): VPackObject = VPackObject(fields.toVector)
 
 }

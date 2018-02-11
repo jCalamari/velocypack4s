@@ -7,7 +7,7 @@ import shapeless.labelled.FieldType
 
 private[shapeless] trait ShapelessEncoders {
 
-  implicit val hnilEncoder: VPackObjectEncoder[HNil] = VPackObjectEncoder.createObjectEncoder(hnil => VPackObject(Nil))
+  implicit val hnilEncoder: VPackObjectEncoder[HNil] = VPackObjectEncoder.createObjectEncoder(_ => VPackObject(Vector.empty))
 
   implicit def hlistObjectEncoder[K <: Symbol, H, T <: HList](
     implicit
@@ -19,7 +19,7 @@ private[shapeless] trait ShapelessEncoders {
     VPackObjectEncoder.createObjectEncoder { hlist =>
       val head = hEncoder.value.encode(hlist.head)
       val tail = tEncoder.encode(hlist.tail)
-      VPackObject((fieldName, head) :: tail.fields)
+      VPackObject(tail.fields :+ (fieldName, head))
     }
   }
 
