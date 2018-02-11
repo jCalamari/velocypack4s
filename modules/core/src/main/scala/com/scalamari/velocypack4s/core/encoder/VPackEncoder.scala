@@ -1,14 +1,14 @@
-package com.scalamari.velocypack.core.encoder
+package com.scalamari.velocypack4s.core.encoder
 
-import com.scalamari.velocypack.core.domain.{VPackNull, VPackValue}
+import com.scalamari.velocypack4s.core.domain._
 
-private[velocypack] trait VPackEncoder[A] extends Encoder[A, VPackValue] {
+private[velocypack4s] trait VPackEncoder[A] extends Encoder[A, VPackValue] {
 
   def encode(value: A): VPackValue
 
 }
 
-private[velocypack] object VPackEncoder {
+private[velocypack4s] object VPackEncoder {
 
   def apply[A](implicit enc: VPackEncoder[A]): VPackEncoder[A] = enc
 

@@ -9,6 +9,6 @@ val shapeless = VelocyPackModule("shapeless")
   .settings(Dependencies.shapeless)
   .dependsOn(core)
 
-val root = Project("velocypack-module-scala", file("."))
+val root = Project("velocypack4s", file("."))
   .aggregate(core)
   .aggregate(shapeless)

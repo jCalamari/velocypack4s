@@ -1,4 +1,4 @@
-package com.scalamari.velocypack.core.decoder
+package com.scalamari.velocypack4s.core.decoder
 
 trait Decoder[A, B] {
 

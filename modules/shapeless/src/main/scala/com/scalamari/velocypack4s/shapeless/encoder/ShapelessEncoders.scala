@@ -1,9 +1,9 @@
-package com.scalamari.velocypack.shapeless.encoder
+package com.scalamari.velocypack4s.shapeless.encoder
 
 import java.util.Date
 
-import com.scalamari.velocypack.core.domain._
-import com.scalamari.velocypack.core.encoder.{VPackEncoder, VPackObjectEncoder}
+import com.scalamari.velocypack4s.core.domain._
+import com.scalamari.velocypack4s.core.encoder._
 import shapeless._
 import shapeless.labelled.FieldType
 
@@ -30,7 +30,7 @@ private[shapeless] trait ShapelessEncoders {
 
   implicit def hlistObjectEncoder[K <: Symbol, H, T <: HList](
     implicit
-    witness: Witness.Aux[K],
+    witness:  Witness.Aux[K],
     hEncoder: Lazy[VPackEncoder[H]],
     tEncoder: VPackObjectEncoder[T]
   ): VPackObjectEncoder[FieldType[K, H] :: T] = {
@@ -44,7 +44,7 @@ private[shapeless] trait ShapelessEncoders {
 
   implicit def genericObjectEncoder[A, H <: HList](
     implicit
-    generic: LabelledGeneric.Aux[A, H],
+    generic:  LabelledGeneric.Aux[A, H],
     hEncoder: Lazy[VPackObjectEncoder[H]]
   ): VPackEncoder[A] =
     VPackObjectEncoder.createObjectEncoder { value =>
