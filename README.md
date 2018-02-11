@@ -11,3 +11,8 @@ The library is composed by these modules:
 
     - core: encapsulates common behaviours and provides basic encoders/decoders
     - shapeless: case class encoder/decoder generation using shapeless 
+
+#### TODO
+
+- write macro-based encoder/decoder generation, alternative to shapeless
+- backward/forward compatibility tests
