@@ -19,10 +19,6 @@ private[velocypack4s] trait BasicEncoders {
   implicit val bigIntEncoder:     VPackEncoder[BigInt]     = VPackEncoder.createEncoder(VPackBigInt)
   implicit val booleanEncoder:    VPackEncoder[Boolean]    = VPackEncoder.createEncoder(VPackBoolean)
 
-  implicit def listEncoder[A](implicit enc: VPackEncoder[A]): VPackEncoder[List[A]] = VPackEncoder.createEncoder(list => VPackArray(list.map(enc.encode).toVector))
-
-  implicit def optionEncoder[A](implicit enc: VPackEncoder[A]): VPackEncoder[Option[A]] = VPackEncoder.createEncoder(opt => opt.map(enc.encode).getOrElse(VPackNull))
-
 }
 
 private[velocypack4s] object BasicEncoders extends BasicEncoders
