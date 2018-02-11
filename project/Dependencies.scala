@@ -13,12 +13,14 @@ object Dependencies {
     val velocypack = "com.arangodb"  % "velocypack"     % Versions.velocypack
     val shapeless  = "com.chuusai"   %% "shapeless"     % Versions.shapeless
     val scalatest  = "org.scalatest" % "scalatest_2.12" % Versions.scalatest
-
   }
 
   val l = libraryDependencies
 
-  val core = l ++= Seq(Libraries.velocypack)
+  val core = l ++= Seq(
+    Libraries.velocypack,
+    Libraries.scalatest % Test
+  )
 
   val shapeless = l ++= Seq(
     Libraries.shapeless,

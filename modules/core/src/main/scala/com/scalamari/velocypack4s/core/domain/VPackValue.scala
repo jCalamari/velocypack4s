@@ -33,3 +33,15 @@ private[velocypack4s] final case class VPackBigInt(value: BigInt) extends VPackV
 private[velocypack4s] final case class VPackBoolean(value: Boolean) extends VPackValue
 
 private[velocypack4s] case object VPackNull extends VPackValue
+
+private[velocypack4s] object VPackArray {
+
+  def apply(fields: VPackValue*): VPackArray = VPackArray(fields.toList)
+
+}
+
+private[velocypack4s] object VPackObject {
+
+  def apply(fields: (String, VPackValue)*): VPackObject = VPackObject(fields.toList)
+
+}
