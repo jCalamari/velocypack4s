@@ -1,6 +1,8 @@
 package com.scalamari.velocypack.shapeless
 
-import com.scalamari.velocypack.core.domain.VPackObject
+import java.util.Date
+
+import com.scalamari.velocypack.core.domain.VPackArray
 import com.scalamari.velocypack.core.encoder.VPackEncoder
 import org.scalatest.{Matchers, WordSpec}
 
@@ -10,13 +12,48 @@ class ShapelessEncoderSpec extends WordSpec with Matchers {
 
     "encode foo bar" in {
 
-      val instance = Foo("bar", baz = true)
-      val encoded = VPackEncoder[Foo].encode(instance)
-      encoded shouldBe a[VPackObject]
+      val instances = List(Foo.instance)
+      val encoded = VPackEncoder[List[Foo]].encode(instances)
+      encoded shouldBe a[VPackArray]
+      encoded.asInstanceOf[VPackArray].items should not be empty
 
     }
   }
 
-  case class Foo(bar: String, baz: Boolean)
+  case class Foo(
+    bar: String,
+    baz: Boolean,
+    qux: Int,
+    quux: Double,
+    corge: Float,
+    grault: Long,
+    garply: Short,
+    waldo: Char,
+    fred: BigDecimal,
+    plugh: BigInt,
+    xyzzy: Date,
+    thud: Byte
+  )
+
+  object Foo {
+
+    def instance: Foo = Foo(
+      bar = "bar",
+      baz = true,
+      qux = Int.MaxValue,
+      quux = Double.MaxValue,
+      corge = Float.MinValue,
+      grault = Long.MaxValue,
+      garply = Short.MinValue,
+      waldo = Char.MaxValue,
+      fred = BigDecimal(Double.MinValue),
+      plugh = BigInt(Int.MaxValue),
+      xyzzy = nullDate,
+      thud = 255.toByte
+    )
+
+    private val nullDate: Date = null
+
+  }
 
 }
