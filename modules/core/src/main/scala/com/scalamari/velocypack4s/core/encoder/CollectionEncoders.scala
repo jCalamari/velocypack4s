@@ -23,8 +23,6 @@ private[core] trait CollectionEncoders {
 
   implicit def optionEncoder[A: VPackEncoder]: VPackEncoder[Option[A]] = VPackEncoder.createEncoder(opt => opt.map(_.toVPack).getOrElse(VPackNull))
 
-  implicit def setEncoder[A: VPackEncoder]: VPackEncoder[Set[A]] = viaVector[Set[A], A]
-
   implicit def seqEncoder[A: VPackEncoder]: VPackEncoder[Seq[A]] = viaVector[Seq[A], A]
 
   implicit def indexedSeqEncoder[A: VPackEncoder]: VPackEncoder[IndexedSeq[A]] = viaVector[IndexedSeq[A], A]
@@ -35,7 +33,7 @@ private[core] trait CollectionEncoders {
 
   import scala.collection.{immutable => imm}
 
-  implicit def immSetEncoder[A: VPackEncoder]: VPackEncoder[imm.Set[A]] = viaVector[imm.Set[A], A]
+  implicit def immSetEncoder[A: VPackEncoder]: VPackEncoder[imm.Set[A]] = viaVector[Set[A], A]
 
   implicit def immSeqEncoder[A: VPackEncoder]: VPackEncoder[imm.Seq[A]] = viaVector[imm.Seq[A], A]
 
@@ -44,6 +42,18 @@ private[core] trait CollectionEncoders {
   implicit def immLinearSeqEncoder[A: VPackEncoder]: VPackEncoder[imm.LinearSeq[A]] = viaVector[imm.LinearSeq[A], A]
 
   implicit def immIterableEncoder[A: VPackEncoder]: VPackEncoder[imm.Iterable[A]] = viaVector[imm.Iterable[A], A]
+
+  import scala.collection.{mutable => mut}
+
+  implicit def mutSetEncoder[A: VPackEncoder]: VPackEncoder[mut.Set[A]] = viaVector[mut.Set[A], A]
+
+  implicit def mutSeqEncoder[A: VPackEncoder]: VPackEncoder[mut.Seq[A]] = viaVector[mut.Seq[A], A]
+
+  implicit def mutIndexedSeqEncoder[A: VPackEncoder]: VPackEncoder[mut.IndexedSeq[A]] = viaVector[mut.IndexedSeq[A], A]
+
+  implicit def mutLinearSeqEncoder[A: VPackEncoder]: VPackEncoder[mut.LinearSeq[A]] = viaVector[mut.LinearSeq[A], A]
+
+  implicit def mutIterableEncoder[A: VPackEncoder]: VPackEncoder[mut.Iterable[A]] = viaVector[mut.Iterable[A], A]
 
   private def viaVector[I <: Iterable[A], A: VPackEncoder]: VPackEncoder[I] =
     VPackEncoder.createEncoder(iterable => VPackArray(iterable.map(_.toVPack).toVector))
