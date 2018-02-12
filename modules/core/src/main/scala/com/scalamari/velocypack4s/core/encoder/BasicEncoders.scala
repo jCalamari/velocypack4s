@@ -4,7 +4,7 @@ import java.util.Date
 
 import com.scalamari.velocypack4s.core.domain._
 
-private[velocypack4s] trait BasicEncoders {
+private[core] trait BasicEncoders {
 
   implicit val stringEncoder:     VPackEncoder[String]     = VPackEncoder.createEncoder(VPackString)
   implicit val doubleEncoder:     VPackEncoder[Double]     = VPackEncoder.createEncoder(VPackDouble)
@@ -21,4 +21,4 @@ private[velocypack4s] trait BasicEncoders {
 
 }
 
-private[velocypack4s] object BasicEncoders extends BasicEncoders
+private[core] object BasicEncoders extends BasicEncoders

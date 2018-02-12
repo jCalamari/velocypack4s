@@ -12,6 +12,28 @@ The library is composed by these modules:
     - core: encapsulates common behaviours and provides basic encoders/decoders
     - shapeless: case class encoder/decoder generation using shapeless 
 
+#### Usage
+
+```scala
+
+import com.scalamari.velocypack4s.core._
+import com.scalamari.velocypack4s.shapeless._
+import com.arangodb.velocypack._
+
+case class Foo(bar: String)
+
+val fooSerializer: VPackSerializer[Foo] = serializer[Foo]
+
+object Module extends VPackModule {
+
+  override def setup[C <: VPackSetupContext[C]](context: C): Unit = {
+    context.registerSerializer(classOf[Foo], fooSerializer)
+  }
+
+}
+
+```
+
 #### TODO
 
 - write macro-based encoder/decoder generation, alternative to shapeless

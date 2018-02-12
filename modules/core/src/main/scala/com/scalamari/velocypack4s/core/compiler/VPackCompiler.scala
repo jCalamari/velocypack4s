@@ -5,14 +5,18 @@ import com.scalamari.velocypack4s.core.domain._
 
 import scala.annotation.tailrec
 
-private[velocypack4s] trait VPackCompiler {
+private[core] trait VPackCompiler {
 
   private val nullKey: String = null
 
   def toSlice(value: VPackValue): VPackSlice = {
     val builder = new VPackBuilder()
-    compileInternal(addNullKeys(Vector(value)), builder)
+    toSlice(value, builder, null)
     builder.slice()
+  }
+
+  def toSlice(value: VPackValue, builder: VPackBuilder, attribute: String): Unit = {
+    compileInternal(Vector(attribute -> value), builder)
   }
 
   @tailrec
@@ -45,4 +49,4 @@ private[velocypack4s] trait VPackCompiler {
 
 }
 
-private[velocypack4s] object VPackCompiler extends VPackCompiler
+private[core] object VPackCompiler extends VPackCompiler

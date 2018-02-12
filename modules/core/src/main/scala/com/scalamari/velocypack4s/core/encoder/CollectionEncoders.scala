@@ -5,7 +5,7 @@ import com.scalamari.velocypack4s.core.domain.{VPackArray, VPackNull, VPackObjec
 
 import scala.collection.LinearSeq
 
-private[velocypack4s] trait CollectionEncoders {
+private[core] trait CollectionEncoders {
 
   implicit def listEncoder[A: VPackEncoder]: VPackEncoder[List[A]] = VPackEncoder.createEncoder(list => VPackArray(list.map(_.toVPack).toVector))
 
@@ -53,4 +53,4 @@ private[velocypack4s] trait CollectionEncoders {
 
 }
 
-private[velocypack4s] object CollectionEncoders extends CollectionEncoders
+private[core] object CollectionEncoders extends CollectionEncoders
