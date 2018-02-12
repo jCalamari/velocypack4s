@@ -15,11 +15,11 @@ private[shapeless] trait ShapelessEncoders {
     hEncoder: Lazy[VPackEncoder[H]],
     tEncoder: VPackObjectEncoder[T]
   ): VPackObjectEncoder[FieldType[K, H] :: T] = {
-    val fieldName: String = witness.value.name
+    val attribute: String = witness.value.name
     VPackObjectEncoder.createObjectEncoder { hlist =>
       val head = hEncoder.value.encode(hlist.head)
       val tail = tEncoder.encode(hlist.tail)
-      VPackObject(tail.fields :+ (fieldName, head))
+      VPackObject(tail.fields :+ (attribute, head))
     }
   }
 

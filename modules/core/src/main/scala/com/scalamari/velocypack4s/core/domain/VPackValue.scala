@@ -34,6 +34,8 @@ private[velocypack4s] final case class VPackBoolean(value: Boolean) extends VPac
 
 private[velocypack4s] case object VPackNull extends VPackValue
 
+private[velocypack4s] case object VPackEnd extends VPackValue
+
 private[velocypack4s] object VPackArray {
 
   def apply(fields: VPackValue*): VPackArray = VPackArray(fields.toVector)
