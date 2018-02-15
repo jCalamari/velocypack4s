@@ -1,4 +1,4 @@
-package com.scalamari.velocypack4s.shapeless
+package com.scalamari.velocypack4s.macros
 
 import java.util.Date
 
@@ -8,7 +8,7 @@ import org.scalatest.{Matchers, WordSpec}
 
 class MacroFormatsSpec extends WordSpec with Matchers {
 
-  "ShapelessEncoder" should {
+  "MacroFormats" should {
 
     "encode foo bar" in {
 
