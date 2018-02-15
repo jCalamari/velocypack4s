@@ -1,4 +1,4 @@
-package com.scalamari.velocypack4s.core.encoder
+package com.scalamari.velocypack4s.core.reader
 
 import com.scalamari.velocypack4s.core._
 import com.scalamari.velocypack4s.core.domain._
@@ -40,7 +40,7 @@ class CollectionEncodersSpec extends WordSpec with Matchers {
       val value: Map[String, Int] = Map("key" -> 1)
       value.toVPack shouldBe VPackObject("key" -> VPackInt(1))
 
-      a[EncodingException] should be thrownBy {
+      a[SerializationException] should be thrownBy {
         Map(1 -> 1).toVPack
       }
     }

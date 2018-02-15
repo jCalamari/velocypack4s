@@ -3,17 +3,17 @@ package com.scalamari.velocypack4s.shapeless
 import java.util.Date
 
 import com.scalamari.velocypack4s.core.domain.VPackArray
-import com.scalamari.velocypack4s.core.encoder.VPackEncoder
+import com.scalamari.velocypack4s.core.format.VPackFormat
 import org.scalatest.{Matchers, WordSpec}
 
-class ShapelessEncoderSpec extends WordSpec with Matchers {
+class MacroFormatsSpec extends WordSpec with Matchers {
 
   "ShapelessEncoder" should {
 
     "encode foo bar" in {
 
       val instances = List(Foo.instance)
-      val encoded   = VPackEncoder[List[Foo]].encode(instances)
+      val encoded   = VPackFormat[List[Foo]].write(instances)
       encoded shouldBe a[VPackArray]
       encoded.asInstanceOf[VPackArray].items should not be empty
 
