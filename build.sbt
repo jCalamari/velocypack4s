@@ -9,6 +9,13 @@ val macros = VelocyPackModule("macros")
   .settings(Dependencies.macros)
   .dependsOn(core)
 
+// TODO no artifacts
+val tut = VelocyPackModule("tut")
+  .dependsOn(macros)
+  .settings(Tut.settings: _*)
+  .enablePlugins(TutPlugin)
+
 val root = Project("velocypack4s", file("."))
   .aggregate(core)
   .aggregate(macros)
+  .aggregate(tut)
