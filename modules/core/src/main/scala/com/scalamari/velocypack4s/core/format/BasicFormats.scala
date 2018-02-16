@@ -46,7 +46,7 @@ private[core] trait BasicFormats {
 
     override def read(value: VPackValue): Float = value match {
       case VPackFloat(flaot) => flaot
-      case _                 => deserializationError(s"FloatFormat: Not an Float: [$value]")
+      case _                 => deserializationError(s"FloatFormat: Not a Float: [$value]")
     }
   }
 
@@ -55,7 +55,7 @@ private[core] trait BasicFormats {
 
     override def read(value: VPackValue): Long = value match {
       case VPackLong(long) => long
-      case _               => deserializationError(s"LongFormat: Not an Long: [$value]")
+      case _               => deserializationError(s"LongFormat: Not a Long: [$value]")
     }
   }
 
@@ -64,7 +64,7 @@ private[core] trait BasicFormats {
 
     override def read(value: VPackValue): Short = value match {
       case VPackShort(str) => str
-      case _               => deserializationError(s"ShortFormat: Not an Short: [$value]")
+      case _               => deserializationError(s"ShortFormat: Not a Short: [$value]")
     }
   }
 
@@ -73,7 +73,7 @@ private[core] trait BasicFormats {
 
     override def read(value: VPackValue): Char = value match {
       case VPackChar(char) => char
-      case _               => deserializationError(s"CharFormat: Not an Char: [$value]")
+      case _               => deserializationError(s"CharFormat: Not a Char: [$value]")
     }
   }
 
@@ -82,7 +82,7 @@ private[core] trait BasicFormats {
 
     override def read(value: VPackValue): Byte = value match {
       case VPackByte(byte) => byte
-      case _               => deserializationError(s"ByteFormat: Not an Byte: [$value]")
+      case _               => deserializationError(s"ByteFormat: Not a Byte: [$value]")
     }
   }
 
@@ -91,7 +91,7 @@ private[core] trait BasicFormats {
 
     override def read(value: VPackValue): Date = value match {
       case VPackDate(date) => date
-      case _               => deserializationError(s"DateFormat: Not an Date: [$value]")
+      case _               => deserializationError(s"DateFormat: Not a Date: [$value]")
     }
   }
 
@@ -100,7 +100,7 @@ private[core] trait BasicFormats {
 
     override def read(value: VPackValue): BigDecimal = value match {
       case VPackBigDecimal(dec) => dec
-      case _                    => deserializationError(s"BigDecimalFormat: Not an BigDecimal: [$value]")
+      case _                    => deserializationError(s"BigDecimalFormat: Not a BigDecimal: [$value]")
     }
   }
 
@@ -109,7 +109,7 @@ private[core] trait BasicFormats {
 
     override def read(value: VPackValue): BigInt = value match {
       case VPackBigInt(int) => int
-      case _                => deserializationError(s"BigIntFormat: Not an BigInt: [$value]")
+      case _                => deserializationError(s"BigIntFormat: Not a BigInt: [$value]")
     }
   }
 
@@ -118,7 +118,7 @@ private[core] trait BasicFormats {
 
     override def read(value: VPackValue): Boolean = value match {
       case VPackBoolean(bool) => bool
-      case _                  => deserializationError(s"BooleanFormat: Not an BigDecimal: [$value]")
+      case _                  => deserializationError(s"BooleanFormat: Not a BigDecimal: [$value]")
     }
   }
 
