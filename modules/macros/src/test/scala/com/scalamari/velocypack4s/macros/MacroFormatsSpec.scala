@@ -29,7 +29,7 @@ class MacroFormatsSpec extends WordSpec with Matchers {
       checkRoundTrip(Foo.instance)
     }
 
-    "compile only case class" in {
+    "compile only a case class" in {
       "vpackFormat[ScalaClass]" shouldNot compile
       "vpackFormat[CaseClass]" should compile
       "vpackFormat[String]" shouldNot compile

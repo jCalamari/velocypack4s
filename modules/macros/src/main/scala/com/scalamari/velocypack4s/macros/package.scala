@@ -6,8 +6,8 @@ import scala.language.experimental.{macros => m}
 
 package object macros {
 
-  implicit def materializeVPackFormat[T] = macro Macros.materializeMappableImpl[T]
+  implicit def materializeVPackFormat[T] = macro Macros.materializeFormatImpl[T]
 
-  def vpackFormat[T]: VPackFormat[T] = macro Macros.materializeMappableImpl[T]
+  def vpackFormat[T]: VPackFormat[T] = macro Macros.materializeFormatImpl[T]
 
 }

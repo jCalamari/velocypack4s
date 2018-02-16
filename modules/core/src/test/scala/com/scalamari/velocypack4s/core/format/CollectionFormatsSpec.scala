@@ -41,7 +41,7 @@ class CollectionFormatsSpec extends WordSpec with Matchers {
     }
   }
 
-  // DRY Map("key" -> 1)
+  // TODO DRY
   private def checkRoundTrip[A](value: A)(implicit format: VPackFormat[A]): Unit = {
     format.read(format.write(value)) shouldBe value
   }

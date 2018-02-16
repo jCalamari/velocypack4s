@@ -6,7 +6,7 @@ import scala.reflect.macros.blackbox
 
 private[macros] object Macros {
 
-  def materializeMappableImpl[T: c.WeakTypeTag](c: blackbox.Context): c.Expr[VPackFormat[T]] = {
+  def materializeFormatImpl[T: c.WeakTypeTag](c: blackbox.Context): c.Expr[VPackFormat[T]] = {
     import c.universe._
 
     def assertCaseClass(tpe: c.universe.Type): Unit = {
