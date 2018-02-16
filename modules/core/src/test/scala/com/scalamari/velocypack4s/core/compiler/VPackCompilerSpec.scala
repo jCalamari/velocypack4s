@@ -2,9 +2,9 @@ package com.scalamari.velocypack4s.core.compiler
 
 import java.util.Date
 
-import com.scalamari.velocypack4s.core.RichVPackValue
+import com.scalamari.velocypack4s.core.RichAny
 import com.scalamari.velocypack4s.core.domain._
-import com.scalamari.velocypack4s.core.encoder.BasicEncoders._
+import com.scalamari.velocypack4s.core.format.BasicFormats._
 import org.scalatest.{Matchers, WordSpec}
 
 import scala.collection.JavaConverters._

@@ -9,15 +9,15 @@ The objective is to allow seamless use with Scala case classes without the need 
 
 The library is composed by these modules:
 
-    - core: encapsulates common behaviours and provides basic encoders/decoders
-    - shapeless: case class encoder/decoder generation using shapeless 
+    - core: encapsulates common behaviours and provides basic vpack formats
+    - macros: case class format generation using Scala macros 
 
 #### Usage
 
 ```scala
 
 import com.scalamari.velocypack4s.core._
-import com.scalamari.velocypack4s.shapeless._
+import com.scalamari.velocypack4s.macros._
 import com.arangodb.velocypack._
 
 case class Foo(bar: String)
@@ -36,5 +36,4 @@ object Module extends VPackModule {
 
 #### TODO
 
-- write macro-based encoder/decoder generation, alternative to shapeless
 - backward/forward compatibility tests

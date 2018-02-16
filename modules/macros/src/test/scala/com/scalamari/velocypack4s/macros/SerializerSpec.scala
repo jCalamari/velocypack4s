@@ -1,4 +1,4 @@
-package com.scalamari.velocypack4s.shapeless
+package com.scalamari.velocypack4s.macros
 
 import com.arangodb.velocypack.VPack
 import com.scalamari.velocypack4s.core._
