@@ -9,7 +9,7 @@ The objective is to allow seamless use with Scala case classes without the need 
 
 The library is composed by these modules:
 
-    - core: encapsulates common behaviours and provides basic encoders/decoders
+    - core: encapsulates common behaviours and provides basic vpack formats
     - macros: case class format generation using Scala macros 
 
 #### Usage

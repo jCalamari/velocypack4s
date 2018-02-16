@@ -21,12 +21,12 @@ package object core extends BasicFormats with CollectionFormats {
 
   def deserializationError(message: String) = throw new DeserializationException(message)
 
-  private[core] implicit class RichT[T](value: T) {
-    def toVPack(implicit ev: VPackReader[T]): VPackValue = ev.write(value)
+  implicit class RichAny[T](value: T) {
+    def toVPack(implicit ev: VPackWriter[T]): VPackValue = ev.write(value)
   }
 
-  private[core] implicit class RichVPackValue(value: VPackValue) {
-    def convertTo[T](implicit ev: VPackWriter[T]): T = ev.read(value)
+  implicit class RichVPackValue(value: VPackValue) {
+    def convertTo[T](implicit ev: VPackReader[T]): T = ev.read(value)
   }
 
 }

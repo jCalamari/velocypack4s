@@ -8,19 +8,16 @@ import scala.reflect.ClassTag
 
 private[core] trait CollectionFormats {
 
-  implicit def mapFormat[K, V](implicit keyEncoder: VPackFormat[K], valueEncoder: VPackFormat[V]): VPackFormat[Map[K, V]] = new VPackFormat[Map[K, V]] {
-    override def write(obj: Map[K, V]): VPackValue = {
-      val items = obj.map {
-        case (key, value) =>
-          key.toVPack match {
-            case VPackString(k) => k -> value.toVPack
-            case other          => throw new SerializationException(s"Keys must be formatted as strings: [$other]")
-          }
-      }
-      VPackObject(items.toVector)
+  implicit def mapFormat[V](implicit vf: VPackFormat[V]): VPackFormat[Map[String, V]] = new VPackFormat[Map[String, V]] {
+    override def write(obj: Map[String, V]): VPackValue = {
+      val items = obj.mapValues(_.toVPack).toVector
+      VPackObject(items)
     }
 
-    override def read(value: VPackValue): Map[K, V] = ???
+    override def read(value: VPackValue): Map[String, V] = value match {
+      case VPackObject(fields) => fields.toMap.mapValues(_.convertTo[V])
+      case _                   => serializationError(s"MapFormat: not an object: [$value]")
+    }
   }
 
   implicit def optionFormat[T: VPackFormat]: VPackFormat[Option[T]] = new VPackFormat[Option[T]] {

@@ -7,6 +7,13 @@ import com.scalamari.velocypack4s.core.domain._
 
 private[core] trait BasicFormats {
 
+  implicit def VPackFormat[T <: VPackValue]: VPackFormat[T] = new VPackFormat[T] {
+
+    override def write(value: T): VPackValue = value
+
+    override def read(value: VPackValue): T = value.asInstanceOf[T]
+  }
+
   implicit object StringFormat extends VPackFormat[String] {
     override def write(value: String): VPackValue = VPackString(value)
 
