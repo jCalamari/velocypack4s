@@ -16,7 +16,13 @@ object VPackNumber {
 
   def apply(value: Int): VPackNumber = VPackNumber(BigDecimal(value))
 
+  def apply(value: Byte): VPackNumber = apply(value.toInt)
+
+  def apply(value: Short): VPackNumber = apply(value.toInt)
+
   def apply(value: Long): VPackNumber = VPackNumber(BigDecimal(value))
+
+  def apply(value: Float): VPackNumber = apply(value.toDouble)
 
   def apply(value: Double): VPackNumber = VPackNumber(BigDecimal(value))
 
@@ -25,8 +31,6 @@ object VPackNumber {
   def apply(value: String): VPackNumber = VPackNumber(BigDecimal(value))
 
   def apply(value: Array[Char]): VPackNumber = VPackNumber(BigDecimal(value))
-
-  def apply(value: Byte): VPackNumber = VPackNumber(BigDecimal(value))
 
 }
 

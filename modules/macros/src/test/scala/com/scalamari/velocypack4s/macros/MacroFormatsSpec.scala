@@ -43,9 +43,9 @@ class MacroFormatsSpec extends WordSpec with Matchers {
 
   }
 
-  final class ScalaClass
+  class ScalaClass
 
-  final case class CaseClass()
+  case class CaseClass()
 
   private def checkRoundTrip[A](value: A)(implicit f: VPackFormat[A]) = {
     f.read(f.write(value)) shouldBe value
