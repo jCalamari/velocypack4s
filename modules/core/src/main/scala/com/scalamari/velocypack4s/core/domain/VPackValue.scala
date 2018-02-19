@@ -10,25 +10,27 @@ final case class VPackArray(items: Vector[VPackValue]) extends VPackValue
 
 final case class VPackString(value: String) extends VPackValue
 
-final case class VPackDouble(value: Double) extends VPackValue
+final case class VPackNumber(value: BigDecimal) extends VPackValue
 
-final case class VPackInt(value: Int) extends VPackValue
+object VPackNumber {
 
-final case class VPackFloat(value: Float) extends VPackValue
+  def apply(value: Int): VPackNumber = VPackNumber(BigDecimal(value))
 
-final case class VPackLong(value: Long) extends VPackValue
+  def apply(value: Long): VPackNumber = VPackNumber(BigDecimal(value))
 
-final case class VPackShort(value: Short) extends VPackValue
+  def apply(value: Double): VPackNumber = VPackNumber(BigDecimal(value))
 
-final case class VPackChar(value: Char) extends VPackValue
+  def apply(value: BigInt): VPackNumber = VPackNumber(BigDecimal(value))
 
-final case class VPackByte(value: Byte) extends VPackValue
+  def apply(value: String): VPackNumber = VPackNumber(BigDecimal(value))
+
+  def apply(value: Array[Char]): VPackNumber = VPackNumber(BigDecimal(value))
+
+  def apply(value: Byte): VPackNumber = VPackNumber(BigDecimal(value))
+
+}
 
 final case class VPackDate(value: Date) extends VPackValue
-
-final case class VPackBigDecimal(value: BigDecimal) extends VPackValue
-
-final case class VPackBigInt(value: BigInt) extends VPackValue
 
 final case class VPackBoolean(value: Boolean) extends VPackValue
 

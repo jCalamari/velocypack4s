@@ -16,16 +16,8 @@ class VPackCompilerSpec extends WordSpec with Matchers {
     "compile primitive types" in {
       val dateValue = new Date
       VPackCompiler.toSlice(VPackString("string")).getAsString shouldBe "string"
-      VPackCompiler.toSlice(VPackDouble(1.0)).getAsDouble shouldBe 1.0
-      VPackCompiler.toSlice(VPackInt(1)).getAsInt shouldBe 1
-      VPackCompiler.toSlice(VPackFloat(1F)).getAsFloat shouldBe 1F
-      VPackCompiler.toSlice(VPackLong(1L)).getAsLong shouldBe 1L
-      VPackCompiler.toSlice(VPackShort(1)).getAsShort shouldBe 1
-      VPackCompiler.toSlice(VPackChar('c')).getAsChar shouldBe 'c'
-      VPackCompiler.toSlice(VPackByte(1)).getAsByte shouldBe 1.byteValue()
+      VPackCompiler.toSlice(VPackNumber(1)).getAsInt shouldBe 1.intValue()
       VPackCompiler.toSlice(VPackDate(dateValue)).getAsDate shouldBe dateValue
-      VPackCompiler.toSlice(VPackBigDecimal(BigDecimal(1.0))).getAsBigDecimal shouldBe BigDecimal(1.0).bigDecimal
-      VPackCompiler.toSlice(VPackBigInt(BigInt(1))).getAsBigInteger shouldBe BigInt(1).bigInteger
       VPackCompiler.toSlice(VPackBoolean(true)).getAsBoolean shouldBe true
       VPackCompiler.toSlice(VPackNull)
     }
