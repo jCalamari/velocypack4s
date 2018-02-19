@@ -29,6 +29,10 @@ class MacroFormatsSpec extends WordSpec with Matchers {
       checkRoundTrip(Foo.instance)
     }
 
+    "round-trip a nested case class" in {
+      checkRoundTrip(NestedClass(Foo.instance, "property"))
+    }
+
     "compile only a case class" in {
       "vpackFormat[ScalaClass]" shouldNot compile
       "vpackFormat[CaseClass]" should compile
@@ -46,6 +50,8 @@ class MacroFormatsSpec extends WordSpec with Matchers {
   class ScalaClass
 
   case class CaseClass()
+
+  case class NestedClass(foo: Foo, property: String)
 
   private def checkRoundTrip[A](value: A)(implicit f: VPackFormat[A]) = {
     f.read(f.write(value)) shouldBe value

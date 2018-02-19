@@ -1,4 +1,4 @@
-package com.scalamari.velocypack4s.core.compiler
+package com.scalamari.velocypack4s.core.internal
 
 import com.arangodb.velocypack.{VPackBuilder, VPackSlice, ValueType}
 import com.scalamari.velocypack4s.core.domain._
@@ -23,14 +23,14 @@ private[core] trait VPackCompiler {
   private def compileInternal(values: Vector[(String, VPackValue)], state: VPackBuilder): Unit = values match {
     case (attribute, head) +: tail =>
       head match {
-        case VPackObject(fields)    => compileInternal(addEndValue(fields) ++ tail, state.add(attribute, ValueType.OBJECT))
-        case VPackArray(fields)     => compileInternal(addEndValue(addNullKeys(fields)) ++ tail, state.add(attribute, ValueType.ARRAY))
-        case VPackString(value)     => compileInternal(tail, state.add(attribute, value))
-        case VPackNumber(value)     => compileInternal(tail, state.add(attribute, value.bigDecimal))
-        case VPackDate(value)       => compileInternal(tail, state.add(attribute, value))
-        case VPackBoolean(value)    => compileInternal(tail, state.add(attribute, value))
-        case VPackNull              => compileInternal(tail, state.add(attribute, ValueType.NULL))
-        case VPackEnd               => compileInternal(tail, state.close())
+        case VPackObject(fields) => compileInternal(addEndValue(fields) ++ tail, state.add(attribute, ValueType.OBJECT))
+        case VPackArray(fields)  => compileInternal(addEndValue(addNullKeys(fields)) ++ tail, state.add(attribute, ValueType.ARRAY))
+        case VPackString(value)  => compileInternal(tail, state.add(attribute, value))
+        case VPackNumber(value)  => compileInternal(tail, state.add(attribute, value.bigDecimal))
+        case VPackDate(value)    => compileInternal(tail, state.add(attribute, value))
+        case VPackBoolean(value) => compileInternal(tail, state.add(attribute, value))
+        case VPackNull           => compileInternal(tail, state.add(attribute, ValueType.NULL))
+        case VPackEnd            => compileInternal(tail, state.close())
       }
     case IndexedSeq() =>
   }
