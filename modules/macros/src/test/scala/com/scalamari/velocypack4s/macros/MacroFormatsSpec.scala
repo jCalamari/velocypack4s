@@ -1,10 +1,10 @@
-package com.scalamari.velocypack4s.macros
+package org.scalamari.velocypack4s.macros
 
 import java.util.Date
 
-import com.scalamari.velocypack4s.core._
-import com.scalamari.velocypack4s.core.domain.{VPackArray, VPackObject, VPackString}
-import com.scalamari.velocypack4s.core.format.VPackFormat
+import org.scalamari.velocypack4s.core._
+import org.scalamari.velocypack4s.core.domain.{VPackArray, VPackObject, VPackString}
+import org.scalamari.velocypack4s.core.format.VPackFormat
 import org.scalatest.{Matchers, WordSpec}
 
 class MacroFormatsSpec extends WordSpec with Matchers {

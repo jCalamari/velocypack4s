@@ -1,8 +1,8 @@
-package com.scalamari.velocypack4s.macros
+package org.scalamari.velocypack4s.macros
 
 import com.arangodb.velocypack.VPack
-import com.scalamari.velocypack4s.core._
-import com.scalamari.velocypack4s.core.format.VPackFormat
+import org.scalamari.velocypack4s.core._
+import org.scalamari.velocypack4s.core.format.VPackFormat
 import org.scalatest.{Matchers, WordSpec}
 
 import scala.reflect.ClassTag

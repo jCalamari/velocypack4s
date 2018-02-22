@@ -1,9 +1,11 @@
-package com.scalamari.velocypack4s
+package org.scalamari.velocypack4s
 
 import com.arangodb.velocypack._
-import com.scalamari.velocypack4s.core.domain._
-import com.scalamari.velocypack4s.core.format._
-import com.scalamari.velocypack4s.core.internal.{VPackCompiler, VPackDecompiler}
+import org.scalamari.velocypack4s.core.domain._
+import org.scalamari.velocypack4s.core.format._
+import org.scalamari.velocypack4s.core.internal.{VPackCompiler, VPackDecompiler}
+import org.scalamari.velocypack4s.core.format.{BasicFormats, CollectionFormats, VPackReader, VPackWriter}
+import org.scalamari.velocypack4s.core.internal.VPackCompiler
 
 package object core extends BasicFormats with CollectionFormats {
 

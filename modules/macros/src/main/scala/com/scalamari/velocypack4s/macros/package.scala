@@ -1,6 +1,6 @@
-package com.scalamari.velocypack4s
+package org.scalamari.velocypack4s
 
-import com.scalamari.velocypack4s.core.format.VPackFormat
+import org.scalamari.velocypack4s.core.format.VPackFormat
 
 import scala.language.experimental.{macros => m}
 

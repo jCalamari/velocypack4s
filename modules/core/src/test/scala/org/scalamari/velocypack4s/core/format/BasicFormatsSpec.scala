@@ -1,8 +1,8 @@
-package com.scalamari.velocypack4s.core.format
+package org.scalamari.velocypack4s.core.format
 
-import com.scalamari.velocypack4s.core.DeserializationException
-import com.scalamari.velocypack4s.core.domain.VPackNull
-import com.scalamari.velocypack4s.core.format.BasicFormats._
+import org.scalamari.velocypack4s.core.DeserializationException
+import org.scalamari.velocypack4s.core.domain.VPackNull
+import org.scalamari.velocypack4s.core.format.BasicFormats._
 import org.scalatest.{Matchers, WordSpec}
 
 class BasicFormatsSpec extends WordSpec with Matchers {

@@ -1,6 +1,6 @@
-package com.scalamari.velocypack4s.macros
+package org.scalamari.velocypack4s.macros
 
-import com.scalamari.velocypack4s.core.format.VPackFormat
+import org.scalamari.velocypack4s.core.format.VPackFormat
 
 import scala.reflect.macros.blackbox
 
@@ -44,19 +44,19 @@ private[macros] object Macros {
 
     c.Expr[VPackFormat[T]] {
       q"""
-      new com.scalamari.velocypack4s.core.format.VPackFormat[$tpe] {
-        override def read(t: com.scalamari.velocypack4s.core.domain.VPackValue): $tpe = t match {
-          case o: com.scalamari.velocypack4s.core.domain.VPackObject => readObject(o)
-          case _ => com.scalamari.velocypack4s.core.deserializationError(s"Not an object: [$$t]")
+      new org.scalamari.velocypack4s.core.format.VPackFormat[$tpe] {
+        override def read(t: org.scalamari.velocypack4s.core.domain.VPackValue): $tpe = t match {
+          case o: org.scalamari.velocypack4s.core.domain.VPackObject => readObject(o)
+          case _ => org.scalamari.velocypack4s.core.deserializationError(s"Not an object: [$$t]")
         }
 
-        private def readObject(o: com.scalamari.velocypack4s.core.domain.VPackObject): $tpe = {
+        private def readObject(o: org.scalamari.velocypack4s.core.domain.VPackObject): $tpe = {
           val f = o.fields.toMap
           $companion(..$classFields)
         }
 
-        override def write(t: $tpe): com.scalamari.velocypack4s.core.domain.VPackValue = {
-          com.scalamari.velocypack4s.core.domain.VPackObject(..$vpackFields)
+        override def write(t: $tpe): org.scalamari.velocypack4s.core.domain.VPackValue = {
+          org.scalamari.velocypack4s.core.domain.VPackObject(..$vpackFields)
         }
       }
       """

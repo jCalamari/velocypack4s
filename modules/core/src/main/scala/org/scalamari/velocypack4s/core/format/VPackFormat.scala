@@ -1,6 +1,6 @@
-package com.scalamari.velocypack4s.core.format
+package org.scalamari.velocypack4s.core.format
 
-import com.scalamari.velocypack4s.core.domain._
+import org.scalamari.velocypack4s.core.domain._
 
 import scala.annotation.implicitNotFound
 

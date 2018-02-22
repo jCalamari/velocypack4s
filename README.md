@@ -16,8 +16,8 @@ The library is composed by these modules:
 
 ```scala
 
-import com.scalamari.velocypack4s.core._
-import com.scalamari.velocypack4s.macros._
+import org.scalamari.velocypack4s.core._
+import org.scalamari.velocypack4s.macros._
 import com.arangodb.velocypack._
 
 case class Foo(bar: String)

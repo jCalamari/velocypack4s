@@ -1,4 +1,4 @@
-package com.scalamari.velocypack4s.core.domain
+package org.scalamari.velocypack4s.core.domain
 
 import java.util.Date
 

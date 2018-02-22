@@ -1,8 +1,8 @@
-package com.scalamari.velocypack4s.core.internal
+package org.scalamari.velocypack4s.core.internal
 
 import com.arangodb.velocypack.VPackSlice
-import com.scalamari.velocypack4s.core.domain._
-import com.scalamari.velocypack4s.core.unsupportedFieldError
+import org.scalamari.velocypack4s.core.domain._
+import org.scalamari.velocypack4s.core.unsupportedFieldError
 
 import scala.annotation.tailrec
 import scala.collection.JavaConverters._

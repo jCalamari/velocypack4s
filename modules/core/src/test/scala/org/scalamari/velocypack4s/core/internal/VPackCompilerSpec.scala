@@ -1,11 +1,11 @@
-package com.scalamari.velocypack4s.core.internal
+package org.scalamari.velocypack4s.core.internal
 
 import java.util.Date
 
 import com.arangodb.velocypack.{VPackBuilder, ValueType}
-import com.scalamari.velocypack4s.core.RichAny
-import com.scalamari.velocypack4s.core.domain._
-import com.scalamari.velocypack4s.core.format.BasicFormats._
+import org.scalamari.velocypack4s.core.RichAny
+import org.scalamari.velocypack4s.core.domain._
+import org.scalamari.velocypack4s.core.format.BasicFormats._
 import org.scalatest.{Matchers, WordSpec}
 
 class VPackCompilerSpec extends WordSpec with Matchers {

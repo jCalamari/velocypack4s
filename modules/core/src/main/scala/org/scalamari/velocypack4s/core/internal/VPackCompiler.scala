@@ -1,7 +1,7 @@
-package com.scalamari.velocypack4s.core.internal
+package org.scalamari.velocypack4s.core.internal
 
 import com.arangodb.velocypack.{VPackBuilder, VPackSlice, ValueType}
-import com.scalamari.velocypack4s.core.domain._
+import org.scalamari.velocypack4s.core.domain._
 
 import scala.annotation.tailrec
 
