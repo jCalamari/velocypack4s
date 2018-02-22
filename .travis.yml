@@ -4,6 +4,13 @@ scala:
 
 jdk:
   - oraclejdk8
+env:
+  matrix:
+  - COMMAND=ci-all PUBLISH=true
+  global:
+  - secure: cTXHD9CmhaSDoOT0/pYit4+4goGGlFoWIDbEnCX58549MyuXziZzeeFMU1VU87n7Kv2IXrLEw+ANctRzOCVSsvivIH5X+Jcx0EjejNmBPYIas9QoA7+TG6Oebsq1etHCO3m2jFOepVWQUnaKxiRoQhP6BH+fCMLajzhAVrCk/5+ddZme6flqDFOgLaxRRZYeLldZLqCz//P1XKf+ogPzz6ffoTCpBPQYRmZvjzpAAmvExoWDbXgLRNQHkbxC4DVKNTCcRYCZ3Ys8oZElE6/r/3tZ/C9WyMwlG7I4jxiGZLhW2ltvJePGC2GkpnNjmg8K8IiAwB19Qjr7JlVqEjgm8DsMzFeI/6Bgs1Mlhkh16d+BQWrw65/E8xY/iWK6X1iHsExSxHxg0eM7CxyKlAhAXOOpbDlSs7PLMi6/oD5rHJgPpCWuS7TO4JV8bYdivld2FoQHD5tdspOpFBzRTeScLdL//fWX8sovfuQELnT83NZ5kAw4S5RoVUMLa07/sNZMxLG4BQoOyswMa3UroGEhGXlwQhekpkSvwBiCRw/oRSqgPl0hx6kc909zVoBa+oJWcV+Ez1ygyDnGEbaGCMzmgssO54/JUe5jKBlDbIZFlIYRDQ7oWn0Q1Xg8v0NbOm7JS1lm+E5DuIY4eySJr70fwCXOjuuvMRZQ5unaxedaLl4=
+  - secure: mH8iCPBntg80pjTflc5g7Ugg0RYjpaQiYgj6e14CPL8ORHQmV+qrogwCX6FyeVI54n3kqh1ykPw1BdCFwzMhjirUeyjrJtM7KFefnyUj1wBqdPhmk0mJdWinp5wnplWO+YpFIbN/tMY20N9twVnAOyXxbYoVSp4Gl3wxsVz9TboQ4NM+odpbu1z/1EP/1YDzXPY1a1tTKRjkYYxoVu4dvWlRPxTpQeQlZNE+NhwwJJEI+NXKUSKUlDdRP36lNRVy8sziQNAgJnTVPOYR78y0hldqfaYOt+sRsZbXyB6EKfZpgVwfgepLV8UAD/7oPvd1v70HztEn2LopcHGO+/A/aJvl1jk1EL7pv6rgXL4H6lAxXyxATAXTY87K73TmhYum+G0DG/sJFhKILFbqFgJN/JAgsBgoeVt7oy60MnM+9K8IWBHuF247ujeUHPBg/dJ+8nFxPVwUyOR4KXLC02bA85MkuQpa8UhOOpCHZRf/Fk7aFlkEXcrh/8DG3Z72dfrB74UjiKjWLFjT8R77pvFCfgDTtKZBiPkyD4g1G6FNVBLAaswY0tIjjgPi2zc3I+L5hS+kVGa1Zd4C0KEd0STU1i4qN4MuewVwApN1YO6rtXn2EzlQ4Mmzb+CPkX5CkdQWRlGMHrsP8M4dq3OfJDHtd920KesbDl6hdY3H7VINic4=
+  - secure: eaiawWCRGAwm4u5DLEUnd2FFUVJGFBi4aQNMvDU5CyPFn2aYE+oV9SH/0eb3ZiP+c1wLU7Mp00u1TPSJyu4mqLEtmGHGS0rbdi1/EVahE4OY3l8hj/mQPDCCxMuip2MICMEk5KeYxArba2lZc6cgXocmLKExNDzNnD/hI9NL+FJWWRP+KmIUD+FEm7c6SxsDlcVNQJkmI0vcUozHbq4XGzxEZ8ge6f+B+2fJ2u3soiREbmVD1he9+iIe5eYiWyLWX3AW4my8I7yiJmFGNFTy1zbCrpEfJcl7TBjw+Jpk8spiyG8oW6bHAZDrTQakRW2kVR4+P8Gl4aifFel4Hm5rlFZuAN4753uBXhpbwCkT7iTBrRWbLsloRXq4TSFnx3FNT0sVnW7jPFG12orkVLzKzlk3KRFffYQap5q1xDYcxbf8xqgyRWPxl7X2JEkGiEcfduRJHrSGXbMzJpm6EstxdV9OXBLZp+Vns+1mxBjIPuB9EvroyaoMDw/Uggqq4CkBeeVJtjhNIm2xQNA0cbxsaEmgctJLw10InWKnHlaQrYpVYc4UBB8POtLgS/fjIGVIls8B5tgOB/3EsnZrhi1jhlezOITZ+huJVSA1Gu0pQrCvLxO1ESlg3xNMT+O525mhoE1j7QStuJVz6KoIzR6SHKRICXzTv/m8whNk2u6nzT4=
 
 cache:
   directories:
@@ -11,7 +18,8 @@ cache:
     - $HOME/.sbt
 
 script:
-  - sbt clean coverage test coverageReport
+  - sbt ++$TRAVIS_SCALA_VERSION $COMMAND
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t 7d0845db-be20-49ce-aa2b-5a64edb0a850
+  - ./project.publish.rb

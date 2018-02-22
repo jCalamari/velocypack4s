@@ -3,7 +3,7 @@ import tut.TutPlugin.autoImport.tutTargetDirectory
 
 object Tut {
 
-  def settings = Seq(
+  lazy val settings = Seq(
     tutTargetDirectory := file(".")
   )
 
