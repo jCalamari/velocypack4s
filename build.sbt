@@ -21,7 +21,8 @@ def VelocyPackModule(name: String): Project = Project(s"velocypack4s-$name", fil
 lazy val noPublishSettings = Seq(
   publish := {},
   publishLocal := {},
-  publishArtifact := false
+  publishArtifact := false,
+  skip in publish := true
 )
 
 lazy val publishSettings = Release.settings ++ Git.settings
