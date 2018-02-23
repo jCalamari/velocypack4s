@@ -24,7 +24,7 @@ lazy val noPublishSettings = Seq(
   publishArtifact := false
 )
 
-lazy val publishSettings = Release.settings ++ Gpg.settings ++ Git.settings
+lazy val publishSettings = Release.settings ++ Git.settings
 
 val core = VelocyPackModule("core")
   .settings(Dependencies.core)
@@ -45,6 +45,7 @@ val tut = VelocyPackModule("tut")
 
 val root = Project("velocypack4s", file("."))
   .settings(noPublishSettings)
+  .settings(Gpg.settings)
   .aggregate(core)
   .aggregate(macros)
   .aggregate(tut)
