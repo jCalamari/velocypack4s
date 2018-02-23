@@ -17,6 +17,9 @@ cache:
     - $HOME/.ivy2/cache
     - $HOME/.sbt
 
+before_script:
+  - chmod +x ./project/publish.rb
+
 script:
   - sbt ++$TRAVIS_SCALA_VERSION $COMMAND
 
