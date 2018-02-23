@@ -25,13 +25,17 @@ lazy val noPublishSettings = Seq(
   skip in publish := true
 )
 
+lazy val publishSettings = Release.settings ++ Git.settings
+
 val core = VelocyPackModule("core")
   .settings(Dependencies.core)
+  .settings(publishSettings)
   .enablePlugins(GitVersioning)
 
 val macros = VelocyPackModule("macros")
   .dependsOn(core)
   .settings(Dependencies.macros)
+  .settings(publishSettings)
   .enablePlugins(GitVersioning)
 
 val tut = VelocyPackModule("tut")
@@ -42,8 +46,6 @@ val tut = VelocyPackModule("tut")
 
 val root = Project("velocypack4s", file("."))
   .settings(noPublishSettings)
-  .settings(Release.settings)
-  .settings(Git.settings)
   .settings(Gpg.settings)
   .aggregate(core)
   .aggregate(macros)
