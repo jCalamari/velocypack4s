@@ -22,4 +22,4 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t 7d0845db-be20-49ce-aa2b-5a64edb0a850
-  - ./project.publish.rb
+  - ./project/publish.rb

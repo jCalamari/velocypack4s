@@ -9,10 +9,7 @@ object Gpg {
     usePgpKeyHex("38D42FA57C10A00B"),
     pgpPublicRing := baseDirectory.value / "project" / ".gnupg" / "pubring.gpg",
     pgpSecretRing := baseDirectory.value / "project" / ".gnupg" / "secring.gpg",
-    pgpPassphrase := {
-      println(sys.env.get("PGP_PASS"))
-      sys.env.get("PGP_PASS").map(_.toArray)
-    }
+    pgpPassphrase := sys.env.get("PGP_PASS").map(_.toArray)
   )
 
 }
