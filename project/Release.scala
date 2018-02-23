@@ -11,8 +11,8 @@ object Release {
     developers := List(Developer("jCalamari", "Piotr Fras", "piotrek.fras@gmail.com", url("https://github.com/jCalamari"))),
     licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
     publishMavenStyle := true,
-    publishTo := Some(if (isSnapshot.value) Opts.resolver.sonatypeSnapshots else Opts.resolver.sonatypeStaging),
     isSnapshot := version.value endsWith "SNAPSHOT",
+    publishTo := Some(if (isSnapshot.value) Opts.resolver.sonatypeSnapshots else Opts.resolver.sonatypeStaging),
     credentials += Credentials(
       "Sonatype Nexus Repository Manager",
       "oss.sonatype.org",
