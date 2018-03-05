@@ -58,15 +58,15 @@ ThisBuild / git.formattedShaVersion := {
 
 // PGP
 
-useGpg := false
+ThisBuild / useGpg := false
 
 usePgpKeyHex("38D42FA57C10A00B")
 
-pgpPublicRing := baseDirectory.value / "project" / ".gnupg" / "pubring.gpg"
+ThisBuild / pgpPublicRing := baseDirectory.value / "project" / ".gnupg" / "pubring.gpg"
 
-pgpSecretRing := baseDirectory.value / "project" / ".gnupg" / "secring.gpg"
+ThisBuild / pgpSecretRing := baseDirectory.value / "project" / ".gnupg" / "secring.gpg"
 
-pgpPassphrase := sys.env.get("PGP_PASS").map(_.toArray)
+ThisBuild / pgpPassphrase := sys.env.get("PGP_PASS").map(_.toArray)
 
 addCommandAlias("ci-all", ";+clean ;+compile ;+coverage ;+test ;+coverageReport ;+coverageAggregate ;+package")
 addCommandAlias("release", ";+publishSigned ;sonatypeReleaseAll")
@@ -91,7 +91,7 @@ val macros = VelocyPackModule("macros")
 
 val tut = VelocyPackModule("tut")
   .dependsOn(macros)
-  .settings(Tut.settings)
+  .settings(tutTargetDirectory := file("."))
   .settings(noPublishSettings)
   .enablePlugins(TutPlugin)
 
