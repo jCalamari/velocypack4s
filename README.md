@@ -14,6 +14,13 @@ The library is composed by these modules:
 
 #### Usage
 
+To use velocypack4s in your project add the following in your build.sbt file:
+
+```
+libraryDependencies += "org.scalamari" %% "velocypack4s-core" % "0.0.1"
+```
+
+
 ```scala
 
 import org.scalamari.velocypack4s.core._
@@ -37,6 +44,10 @@ object Module extends VPackModule {
 }
 
 ```
+
+#### About README
+
+The content of README file is generated from 
 
 #### TODO
 
