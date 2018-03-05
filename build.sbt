@@ -1,4 +1,10 @@
+import com.typesafe.sbt.SbtGit.git
+
+import scala.util.matching.Regex
+
 ThisBuild / scalaVersion := "2.12.4"
+
+ThisBuild / organization := "org.scalamari"
 
 ThisBuild / scalacOptions ++= Seq(
   "-deprecation",
@@ -12,11 +18,60 @@ ThisBuild / scalacOptions ++= Seq(
   "-Ywarn-numeric-widen"
 )
 
+// Release
+
+ThisBuild / sonatypeProfileName := organization.value
+ThisBuild / homepage := Some(url("https://github.com/jCalamari/velocypack4s"))
+ThisBuild / scmInfo := Some(ScmInfo(url("https://github.com/jCalamari/velocypack4s"), "git@github.com:jCalamari/velocypack4s.git"))
+ThisBuild / developers := List(Developer("jCalamari", "Piotr Fras", "piotrek.fras@gmail.com", url("https://github.com/jCalamari")))
+ThisBuild / licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
+ThisBuild / publishMavenStyle := true
+ThisBuild / publishTo := Some(if (isSnapshot.value) Opts.resolver.sonatypeSnapshots else Opts.resolver.sonatypeStaging)
+ThisBuild / isSnapshot := version.value endsWith "SNAPSHOT"
+
+ThisBuild / credentials += Credentials(
+  "Sonatype Nexus Repository Manager",
+  "oss.sonatype.org",
+  sys.env.getOrElse("SONATYPE_USER", ""),
+  sys.env.getOrElse("SONATYPE_PASS", "")
+)
+
+// Git
+
+val ReleaseTag: Regex = """^v([\d\.]+)$""".r
+
+ThisBuild / git.baseVersion := "1.0.0"
+
+ThisBuild / git.gitTagToVersionNumber := {
+  case ReleaseTag(v) => Some(v)
+  case _ => None
+}
+
+ThisBuild / git.formattedShaVersion := {
+  val suffix = git.makeUncommittedSignifierSuffix(git.gitUncommittedChanges.value, git.uncommittedSignifier.value)
+  git.gitHeadCommit.value map {
+    _.substring(0, 7)
+  } map { sha =>
+    git.baseVersion.value + "-" + sha + suffix
+  }
+}
+
+// PGP
+
+useGpg := false
+
+usePgpKeyHex("38D42FA57C10A00B")
+
+pgpPublicRing := baseDirectory.value / "project" / ".gnupg" / "pubring.gpg"
+
+pgpSecretRing := baseDirectory.value / "project" / ".gnupg" / "secring.gpg"
+
+pgpPassphrase := sys.env.get("PGP_PASS").map(_.toArray)
+
 addCommandAlias("ci-all", ";+clean ;+compile ;+coverage ;+test ;+coverageReport ;+coverageAggregate ;+package")
 addCommandAlias("release", ";+publishSigned ;sonatypeReleaseAll")
 
 def VelocyPackModule(name: String): Project = Project(s"velocypack4s-$name", file(s"modules/$name"))
-  .settings(Shared.settings)
 
 lazy val noPublishSettings = Seq(
   publish := {},
@@ -25,17 +80,13 @@ lazy val noPublishSettings = Seq(
   skip in publish := true
 )
 
-lazy val publishSettings = Release.settings ++ Git.settings
-
 val core = VelocyPackModule("core")
   .settings(Dependencies.core)
-  .settings(publishSettings)
   .enablePlugins(GitVersioning)
 
 val macros = VelocyPackModule("macros")
   .dependsOn(core)
   .settings(Dependencies.macros)
-  .settings(publishSettings)
   .enablePlugins(GitVersioning)
 
 val tut = VelocyPackModule("tut")
@@ -46,7 +97,6 @@ val tut = VelocyPackModule("tut")
 
 val root = Project("velocypack4s", file("."))
   .settings(noPublishSettings)
-  .settings(Gpg.settings)
   .aggregate(core)
   .aggregate(macros)
   .aggregate(tut)
