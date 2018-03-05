@@ -1,0 +1,1 @@
+ThisBuild / git.baseVersion := "0.0.1"

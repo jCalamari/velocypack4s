@@ -40,8 +40,6 @@ ThisBuild / credentials += Credentials(
 
 val ReleaseTag: Regex = """^v([\d\.]+)$""".r
 
-ThisBuild / git.baseVersion := "1.0.0"
-
 ThisBuild / git.gitTagToVersionNumber := {
   case ReleaseTag(v) => Some(v)
   case _ => None
