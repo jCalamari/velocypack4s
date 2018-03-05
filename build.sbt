@@ -71,6 +71,8 @@ pgpPassphrase := sys.env.get("PGP_PASS").map(_.toArray)
 addCommandAlias("ci-all", ";+clean ;+compile ;+coverage ;+test ;+coverageReport ;+coverageAggregate ;+package")
 addCommandAlias("release", ";+publishSigned ;sonatypeReleaseAll")
 
+// Project
+
 def VelocyPackModule(name: String): Project = Project(s"velocypack4s-$name", file(s"modules/$name"))
 
 lazy val noPublishSettings = Seq(
