@@ -17,7 +17,7 @@ The library is composed by these modules:
 To use velocypack4s in your project add the following in your build.sbt file:
 
 ```
-libraryDependencies += "org.scalamari" %% "velocypack4s-core" % "0.0.1"
+libraryDependencies += "org.scalamari" %% "velocypack4s-macros" % "0.0.1"
 ```
 
 Simple serialization/deserialization with velocypack4s:
